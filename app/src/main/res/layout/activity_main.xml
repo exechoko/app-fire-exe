@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CBCCC9"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+
+    <EditText
+        android:id="@+id/txt_nombrePersona"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nombre y Apellido"
+        android:inputType="textPersonName"
+        android:textColor="#A10E0E"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/txtDNIPersona"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="D.N.I."
+        android:inputType="number"
+        android:textColor="#A10E0E"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/txt_domiPersona"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Domicilio"
+        android:inputType="textPersonName"
+        android:textColor="#A10E0E"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/txt_causaPersona"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Causa"
+        android:inputType="textEmailAddress"
+        android:textColor="#A10E0E"
+        android:textSize="15dp" />
+
+
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:text="Lista de Personas"
+        android:textSize="20dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#B1AFAF"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/lv_datosPersonas"
+                android:layout_width="match_parent"
+                android:layout_height="256dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
