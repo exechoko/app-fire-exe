@@ -5,18 +5,22 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.exe.app_fire_exe.model.Persona;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,9 +43,13 @@ public class MainActivity extends AppCompatActivity {
     EditText nomP, domP, causaP, dniP, personaBuscada;
     ListView listV_personas;
 
+    Button botonSignOut;
+
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    Query myQuery;
+
+    FirebaseAuth mAuth;
+
 
     Persona personaSelected;
 
@@ -54,12 +62,18 @@ public class MainActivity extends AppCompatActivity {
         domP = findViewById(R.id.txt_domiPersona);
         causaP = findViewById(R.id.txt_causaPersona);
         dniP = findViewById(R.id.txtDNIPersona);
+        personaBuscada = findViewById(R.id.txt_Buscar);
+
+        mAuth = FirebaseAuth.getInstance();
+        botonSignOut = findViewById(R.id.btnSignOut);
 
         listV_personas = findViewById(R.id.lv_datosPersonas);
 
+
+
         inicializarFirebase();
         listarDatos();
-        //consultarFirebase();
+
 
         listV_personas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -74,6 +88,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        //Filtrado por nombre
+        personaBuscada.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                arrayAdapterPersona.getFilter().filter(s);
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+        //Cerrar sesion
+        botonSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+            }
+        });
 
 
 
@@ -190,30 +232,12 @@ public class MainActivity extends AppCompatActivity {
                 limpiarCajas();
                 break;
             }
+            /* //EN DESARROLLO BOTON DE BUSCAR (SEARCH)
             case R.id.icon_search: {
                 //consultarFirebase();
                 Toast.makeText(this, "Operacion en desarrollo", Toast.LENGTH_SHORT).show();
-
-
-
-                /*FirebaseDatabase.getInstance().getReference("Personas").orderByChild("Nombre").equalTo(nombre).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String valor = dataSnapshot.getValue(String.class);
-                        personaBuscada.setText(valor.toString());
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Log.i("Firebase consulta","Fallo la lectura");
-
-                    }
-                });*/
-                //databaseReference.child("Persona").orderByChild("Nombre").equalTo(nombre).addValueEventListener()
-
-
                 break;
-            }
+            }*/
             default:break;
         }
         return true;

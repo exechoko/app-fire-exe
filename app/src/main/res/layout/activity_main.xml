@@ -9,6 +9,15 @@
     android:padding="10dp"
     tools:context=".MainActivity">
 
+    <EditText
+        android:id="@+id/txt_Buscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textColor="#A10E0E"
+        android:inputType="textPersonName"
+        android:text=""
+        android:hint="Ing. nombre a buscar"/>
 
     <EditText
         android:id="@+id/txt_nombrePersona"
@@ -51,16 +60,16 @@
         android:textSize="15dp" />
 
 
-
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
-        android:text="Lista de Personas"
-        android:textSize="20dp" />
+        android:text="IDENTIFICADAS"
+        android:textColor="#7E0808"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -75,8 +84,16 @@
             <ListView
                 android:id="@+id/lv_datosPersonas"
                 android:layout_width="match_parent"
-                android:layout_height="256dp" />
+                android:layout_height="200dp" />
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/btnSignOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:text="CERRAR SESIÓN"
+        android:background="@color/colorPrimary" />
 
 </LinearLayout>
